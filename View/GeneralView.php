@@ -2,7 +2,7 @@
 
 require_once 'libs/smarty-3.1.39/smarty-3.1.39/libs/Smarty.class.php';
 
-class ChampionsView{
+class GeneralView{
 
     private $smarty;
 
@@ -10,9 +10,15 @@ class ChampionsView{
         $this->smarty= new Smarty();
     }
 
-    function renderChampions($champions){
+    function renderHome(){
+        $this->smarty->display('templates/home.tpl');
+    }
+
+    function renderChampionList($champions, $rolls){
         $this->smarty->assign('titulo', "Lista de champions");
         $this->smarty->assign('champions', $champions);
+        $this->smarty->assign('rolls', $rolls);
         $this->smarty->display('templates/championsList.tpl');
     }
+
 }

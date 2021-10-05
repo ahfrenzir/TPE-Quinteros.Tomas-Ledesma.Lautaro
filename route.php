@@ -2,6 +2,7 @@
 
 require_once 'Controller/RollsController.php';
 require_once 'Controller/ChampionsController.php';
+require_once 'Controller/GeneralController.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -14,6 +15,7 @@ if(!empty($_GET['action'])){
 $params = explode('/,', $action);
 $rollsController = new RollsController();
 $championsController = new ChampionsController();
+$generalController = new GeneralController();
 
 echo (var_dump($_GET['action']));
 echo (var_dump($params));
@@ -21,10 +23,10 @@ echo(var_dump($_POST));
 
 switch($params[0]){
     case 'home':
-        $championsController->showHome();
+        $generalController->showHome();
         break;
     case 'showCampeones':
-        $championsController->showChampions();
+        $generalController->showChampions();
     break;
     case 'showCampeon':
         $championsController->showChampion($params[1]);

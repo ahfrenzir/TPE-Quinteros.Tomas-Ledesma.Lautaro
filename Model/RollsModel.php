@@ -7,7 +7,7 @@ class RollsModel{
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8', 'root', '');
     }
 
-    function getRolls(){
+    function getRollsFromDB(){
         $sentencia = $this->db->prepare("SELECT * FROM rolls");
         $sentencia->execute();
         $rolls = $sentencia->fetchAll(PDO::FETCH_OBJ);

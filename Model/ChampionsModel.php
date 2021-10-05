@@ -7,7 +7,7 @@ class ChampionsModel{
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8', 'root', '');
     }
 
-    function getChampions(){
+    function getChampionsFromDB(){
         $sentencia = $this->db->prepare("SELECT * FROM champions");
         $sentencia->execute();
         $champions = $sentencia->fetchAll(PDO::FETCH_OBJ);

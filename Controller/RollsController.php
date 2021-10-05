@@ -14,9 +14,14 @@ class RollsController{
         $this->model = new RollsModel();
         $this->view = new RollsView();
     }
+    
+    function getRolls(){
+        $rolls = $this->model->getRollsFromDB();
+        return $rolls;
+    }
 
     function showRolls(){
-        $rolls = $this->model->getRolls();
+        $rolls = $this->model->getRollsFromDB();
         $this->view->renderRolls($rolls);
     }
     

@@ -13,14 +13,11 @@ class ChampionsController{
         $this->view = new ChampionsView();
     }
 
-    function showHome(){
-        $this->view->renderHome();
+    function getChampions(){
+        $champions = $this->model->getChampionsFromDB();
+        return $champions;
     }
 
-    function showChampions(){
-        $champions = $this->model->getChampions();
-        $this->view->renderChampions($champions);
-    }
 
     function showChampion($id){
 
