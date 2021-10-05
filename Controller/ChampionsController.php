@@ -41,7 +41,7 @@ class ChampionsController{
     }
 
     /*function updateChampion($id){
-        $this->model->updateChampionFromDB($id);
+        $this->model->updateChampionFromDB($id); mtu vieja
     }*/
 
 
