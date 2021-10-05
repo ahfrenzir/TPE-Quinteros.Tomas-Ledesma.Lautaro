@@ -13,6 +13,14 @@ class RollsModel{
         $rolls = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $rolls;
     }
+
+    function getRollName($id){
+        $sentencia = $this->db->prepare("SELECT * FROM rolls WHERE id_roll = ?");
+        $sentencia->execute(array($id));
+        $roll = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $roll;
+    }
+
     function deleteRollfromdb($id){
         $sentencia = $this->db ->prepare("DELETE FROM rolls WHERE id_rolls=?");
         $sentencia->execute(array($id));

@@ -34,9 +34,9 @@ switch($params[0]){
     case 'showRolls':
         $rollsController->showRolls();
     break;
-    /*case 'showItemsByRoll':
-        showItemsByRoll();
-    break;*/
+    case 'showItemsByRoll':
+        $generalController->showChampsByRoll($params[1]);
+    break;
     case 'createChampion': 
         $championsController->createChampion($params[1]); 
         break;

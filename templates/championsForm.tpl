@@ -1,4 +1,4 @@
-<form action="createChampion" method="POST">
+<form action="createChampion/{$roll->id_roll}" method="POST">
     <input type="text" name="name" id="name">
     <input type="text" name="description" id="description">
     <textarea name="history" id="" cols="30" rows="10"></textarea>

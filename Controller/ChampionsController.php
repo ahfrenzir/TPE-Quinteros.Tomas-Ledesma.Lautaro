@@ -18,6 +18,11 @@ class ChampionsController{
         return $champions;
     }
 
+    function getChampionByRoll($roll){
+        $champions = $this->model->getChampionsByRoll($roll);
+        return $champions;
+    }
+
 
     function showChampion($id){
 

@@ -26,6 +26,13 @@ class GeneralController{
         $this->view->renderChampionList($champions, $rolls);
     }
 
+    function showChampsByRoll($id){
+        $champions = $this->champController->getChampionByRoll($id);
+        $roll = $this->rollsController-> getRollName($id);
+        $this->view->renderChampionsByRoll($champions, $roll);
+
+    }
+
 
     //$rolls = $this->rollsController-> getRolls();
     //$champs = $this->champController-> getChampions();

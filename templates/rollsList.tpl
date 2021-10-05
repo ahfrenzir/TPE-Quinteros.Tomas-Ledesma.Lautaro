@@ -3,7 +3,7 @@
 <ul>
     {foreach from=$rolls item=$roll}
         <li>
-            {$roll->roll}:  {$roll->description}
+            <a href="showItemsByRoll/{$roll->id_roll}">{$roll->roll}</a>:  {$roll->description}
         </li>
     {/foreach}
 </ul>

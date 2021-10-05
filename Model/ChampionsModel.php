@@ -14,6 +14,13 @@ class ChampionsModel{
         return $champions;
 
     }
+
+    function getChampionsByRoll($roll){
+        $sentencia = $this->db->prepare("SELECT * FROM champions WHERE id_roll = ?");
+        $sentencia->execute(array($roll));
+        $champions = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $champions;
+    }
     
     function insertChampionOnDB($name,$description,$history){
         $sentencia = $this->db ->prepare("INSERT INTO tareas(nombre,descripcion, history) VALUES (?, ?, ?, ?)");

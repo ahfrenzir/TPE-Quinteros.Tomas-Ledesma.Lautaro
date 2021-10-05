@@ -20,6 +20,11 @@ class RollsController{
         return $rolls;
     }
 
+    function getRollName($id){
+        $roll = $this->model->getRollName($id);
+        return $roll;
+    }
+
     function showRolls(){
         $rolls = $this->model->getRollsFromDB();
         $this->view->renderRolls($rolls);
