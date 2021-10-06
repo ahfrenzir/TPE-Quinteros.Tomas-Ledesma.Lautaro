@@ -16,7 +16,6 @@ class GeneralController{
     }
 
     function showHome(){
-        
         $this->view->renderHome();
     }
 

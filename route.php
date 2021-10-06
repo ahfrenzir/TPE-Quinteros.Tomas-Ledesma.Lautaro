@@ -12,29 +12,29 @@ if(!empty($_GET['action'])){
     $action = 'home';
 }
 
-$params = explode('/,', $action);
 $rollsController = new RollsController();
 $championsController = new ChampionsController();
 $generalController = new GeneralController();
+$params = explode('/,', $action);
 
 echo (var_dump($_GET['action']));
-echo (var_dump($params));
+echo (var_dump($params[0]));
 echo(var_dump($_POST));
 
 switch($params[0]){
     case 'home':
         $generalController->showHome();
         break;
-    case 'showCampeones':
+    case 'campeones':
         $generalController->showChampions();
     break;
-    case 'showCampeon':
+    case 'campeon':
         $championsController->showChampion($params[1]);
     break;
-    case 'showRolls':
+    case 'roles':
         $rollsController->showRolls();
     break;
-    case 'showItemsByRoll':
+    case 'showChampsByRoll':
         $generalController->showChampsByRoll($params[1]);
     break;
     case 'createChampion': 

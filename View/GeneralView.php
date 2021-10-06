@@ -22,7 +22,7 @@ class GeneralView{
     }
 
     function renderChampionsByRoll($champions, $roll){
-        $this->smarty->assign('titulo', "Lista de champions " . $roll->roll);
+        $this->smarty->assign('titulo', "Lista de champions ");
         $this->smarty->assign('champions', $champions);
         $this->smarty->assign('rolls', $roll);
         $this->smarty->display('templates/championsByRoll.tpl');

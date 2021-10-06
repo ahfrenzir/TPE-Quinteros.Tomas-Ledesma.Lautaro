@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="{BASE_URL}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +12,8 @@
         <h1>Guia de League of Legends</h1>
         <ul>
             <li><a href="home">Inicio</li>
-            <li><a href="showCampeones">Campeones</a> </li>
-            <li><a href="showRolls">Roles</a></li>
+            <li><a href="campeones">Campeones</a> </li>
+            <li><a href="roles">Roles</a></li>
             <li><a href="login">Iniciar sesion</a> </li>
         </ul>
     </nav>
