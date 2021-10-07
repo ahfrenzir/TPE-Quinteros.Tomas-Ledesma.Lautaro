@@ -13,36 +13,46 @@ class ChampionsController{
         $this->view = new ChampionsView();
     }
 
+    function getChampion($id){
+        $champion = $this->model->getChampion($id);
+        return $champion;
+     }
+ 
+
     function getChampions(){
         $champions = $this->model->getChampionsFromDB();
         return $champions;
     }
 
-    function getChampionByRoll($roll){
-        $champions = $this->model->getChampionsByRoll($roll);
+    function getChampionsByRoll($id){
+        $champions = $this->model->getChampionsByRoll($id);
         return $champions;
     }
 
 
     function showChampion($id){
-
+       $champion = $this->model->getChampion($id);
+       $this->view->renderChampion($champion);
     }
 
-    function createChampion($id){
+    function createChampion(){
         $name = $_POST['name'];
         $description = $_POST['description'];
         $history = $_POST['history'];
-        var_dump($_POST['id_roll']); 
-        $this->model->insertChampionOnDB($name,$description,$history);
+        $roll = $_POST['id_roll'];
+        $this->model->insertChampionOnDB($name,$description,$history,$roll);
+        $this->view->redirectList();
     }
 
     function deleteChampion($id){
         $this->model->deleteChampionFromdb($id);
+        $this->view->redirectList();
     }
 
-    /*function updateChampion($id){
-        $this->model->updateChampionFromDB($id); mtu vieja
-    }*/
+    function updateChampion($name, $description, $history, $roll, $id){
+        $this->model->updateChampionFromDB($name, $description, $history, $roll, $id);
+        $this->view->redirectList();
+    }
 
-
+   
 }

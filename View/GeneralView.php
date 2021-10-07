@@ -15,17 +15,23 @@ class GeneralView{
     }
 
     function renderChampionList($champions, $rolls){
-        $this->smarty->assign('titulo', "Lista de champions");
+        $this->smarty->assign('titulo', "Lista de campeones");
         $this->smarty->assign('champions', $champions);
         $this->smarty->assign('rolls', $rolls);
         $this->smarty->display('templates/championsList.tpl');
+
     }
 
-    function renderChampionsByRoll($champions, $roll){
-        $this->smarty->assign('titulo', "Lista de champions ");
+    function renderChampionsByRoll($champions, $rolls){
+        $this->smarty->assign('titulo', "Lista de campeones: ");
+        $this->smarty->assign('roll', $rolls);
         $this->smarty->assign('champions', $champions);
-        $this->smarty->assign('rolls', $roll);
         $this->smarty->display('templates/championsByRoll.tpl');
+    }
+
+    function renderForm($rolls){
+        $this->smarty->assign('roll', $rolls);
+        $this->smarty->display('templates/championUpdateForm.tpl');
     }
 
 }

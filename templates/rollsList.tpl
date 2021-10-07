@@ -3,7 +3,7 @@
 <ul>
     {foreach from=$rolls item=$roll}
         <li>
-            <a href="showChampsByRoll/{$roll->roll}">{$roll->roll}</a>:  {$roll->description}
+        <button><a href="showChampsByRoll/{$roll->id_roll}"> {$roll->roll}</a></button>:  {$roll->description}
         </li>
     {/foreach}
 </ul>
@@ -15,4 +15,6 @@
 </form>
 
 {include file="templates/footer.tpl"}
+
+<script src="js/app.js"></script>
  

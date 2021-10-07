@@ -12,14 +12,14 @@ if(!empty($_GET['action'])){
     $action = 'home';
 }
 
+$params = explode('/', $action);
 $rollsController = new RollsController();
 $championsController = new ChampionsController();
 $generalController = new GeneralController();
-$params = explode('/,', $action);
 
-echo (var_dump($_GET['action']));
-echo (var_dump($params[0]));
-echo(var_dump($_POST));
+//var_dump($_GET['action']);
+
+
 
 switch($params[0]){
     case 'home':
@@ -38,14 +38,14 @@ switch($params[0]){
         $generalController->showChampsByRoll($params[1]);
     break;
     case 'createChampion': 
-        $championsController->createChampion($params[1]); 
+        $championsController->createChampion(); 
         break;
     case 'deleteChampion': 
         $championsController->deleteChampion($params[1]); 
         break;
-    /*case 'updateChampion': 
-        $championsController->updateChampion($params[1]); 
-        break;*/
+    case 'updateChampion': 
+        $generalController->updateChampion($params[1]); 
+        break;
     case 'createRoll': 
         $rollController->createRoll(); 
         break;
@@ -57,4 +57,9 @@ switch($params[0]){
         break;
     /*default:
         showError();*/
-}
+    case 'login':
+        $LoginController->login();
+        break;
+    case 'verify':
+        $LoginController->verifyLogin();
+    }

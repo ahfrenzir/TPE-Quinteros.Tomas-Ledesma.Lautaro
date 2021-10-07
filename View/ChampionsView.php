@@ -10,9 +10,18 @@ class ChampionsView{
         $this->smarty= new Smarty();
     }
 
-    function renderChampions($champions){
-        $this->smarty->assign('titulo', "Lista de champions");
-        $this->smarty->assign('champions', $champions);
-        $this->smarty->display('templates/championsList.tpl');
+
+
+    function renderChampion($champion){
+        $this->smarty->assign('champions', $champion);
+        $this->smarty->display('templates/champion.tpl');
+    }
+
+    function redirectList(){
+        header("Location: ".BASE_URL."campeones");
+    }
+
+    function renderForm(){
+        $this->smarty->display('templates/championUpdateForm.tpl');
     }
 }

@@ -20,9 +20,9 @@ class RollsController{
         return $rolls;
     }
 
-    function getRollName($id){
-        $roll = $this->model->getRollName($id);
-        return $roll;
+    function getRollForChampion($id){
+        $champions = $this->model->getRollForChampion($id);
+        return $champions;
     }
 
     function showRolls(){

@@ -26,12 +26,20 @@ class GeneralController{
     }
 
     function showChampsByRoll($id){
-        $champions = $this->champController->getChampionByRoll($id);
-        $roll = $this->rollsController-> getRollName($id);
+        $champions = $this->champController->getChampionsByRoll($id);
+        $roll = $this->rollsController-> getRollForChampion($id);
         $this->view->renderChampionsByRoll($champions, $roll);
-
     }
 
+    function updateChampion($id){
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $history = $_POST['history'];
+        $roll = $_POST['id_roll'];
+        $this->champController->updateChampion($name, $description, $history, $roll, $id);
+    }
+
+    //$nombre = $_POST['name']
 
     //$rolls = $this->rollsController-> getRolls();
     //$champs = $this->champController-> getChampions();
