@@ -21,13 +21,19 @@ class RollsModel{
         return $roll;
     }
 
+    function insertRollOnDB($roll,$description){
+        $sentencia = $this->db->prepare("INSERT INTO rolls (roll,description) VALUES (?, ?)");
+        $sentencia->execute(array($roll, $description));
+
+    }
+
     function deleteRollfromdb($id){
-        $sentencia = $this->db ->prepare("DELETE FROM rolls WHERE id_rolls=?");
+        $sentencia = $this->db->prepare("DELETE FROM rolls WHERE id_roll=?");
         $sentencia->execute(array($id));
     }
-    function updateRollfromdb($id){
-        $sentencia = $this->db ->prepare("UPDATE roll SET finalizada = 1 WHERE id_rolls=?");
-        $sentencia->execute(array($id));
-    }
-        
+
+    function updateRollfromdb($id,$name,$description){
+        $sentencia = $this->db->prepare("UPDATE rolls SET roll='$name', description='$description' WHERE id_roll='$id'");
+        $sentencia->execute();
+    }   
 }

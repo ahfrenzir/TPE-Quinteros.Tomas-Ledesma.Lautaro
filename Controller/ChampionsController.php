@@ -36,12 +36,16 @@ class ChampionsController{
     }
 
     function createChampion(){
+        if(!isset($_POST['name']) && !isset($_POST['description']) && !isset($_POST['history'])){
         $name = $_POST['name'];
         $description = $_POST['description'];
         $history = $_POST['history'];
         $roll = $_POST['id_roll'];
         $this->model->insertChampionOnDB($name,$description,$history,$roll);
         $this->view->redirectList();
+        }else{
+            $this->view->showError();
+        }
     }
 
     function deleteChampion($id){

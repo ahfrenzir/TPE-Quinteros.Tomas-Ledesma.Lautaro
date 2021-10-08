@@ -14,20 +14,20 @@ class LoginController{
     }
 
     function login(){
-        $this->view->showLogin();
+        $this->view->showlogin();
     }
 
     function verifyLogin(){
-        if (!empty($_POST['email']) && !empty($_POST['password'])) {
-            $email = $_POST['email'];
+        if (!empty($_POST['user']) && !empty($_POST['password'])) {
+            $user = $_POST['user'];
             $password = $_POST['password'];
 
-            $user = $this->model->getUser($email);
+            $user = $this->model->getUser($user);
 
             if ($user && password_verify($password, $user->password)){
 
                 session_start();
-                $_SESSION["email"] = $email;
+                $_SESSION["user"] = $user;
 
                 $this->view->showhome();
             }

@@ -15,4 +15,8 @@ class RollsView{
         $this->smarty->assign('rolls', $rolls);
         $this->smarty->display('templates/rollsList.tpl');
     }
+
+    function redirectList(){
+        header("Location: ".BASE_URL."roles");
+    }
 }

@@ -10,8 +10,6 @@ class ChampionsView{
         $this->smarty= new Smarty();
     }
 
-
-
     function renderChampion($champion){
         $this->smarty->assign('champions', $champion);
         $this->smarty->display('templates/champion.tpl');
@@ -20,8 +18,8 @@ class ChampionsView{
     function redirectList(){
         header("Location: ".BASE_URL."campeones");
     }
-
-    function renderForm(){
-        $this->smarty->display('templates/championUpdateForm.tpl');
+    
+    function showError(){
+        $this->smarty->display('templates/error.tpl');
     }
 }

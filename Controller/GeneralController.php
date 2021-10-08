@@ -32,15 +32,17 @@ class GeneralController{
     }
 
     function updateChampion($id){
-        $name = $_POST['name'];
-        $description = $_POST['description'];
-        $history = $_POST['history'];
-        $roll = $_POST['id_roll'];
-        $this->champController->updateChampion($name, $description, $history, $roll, $id);
+        if(!isset($_POST['name']) && !isset($_POST['description']) && !isset($_POST['history'])){
+            $name = $_POST['name'];
+            $description = $_POST['description'];
+            $history = $_POST['history'];
+            $roll = $_POST['id_roll'];
+            $this->champController->updateChampion($name, $description, $history, $roll, $id);
+        }else{
+            //$this->view->showError();
+        }
     }
 
-    //$nombre = $_POST['name']
+    
 
-    //$rolls = $this->rollsController-> getRolls();
-    //$champs = $this->champController-> getChampions();
 }

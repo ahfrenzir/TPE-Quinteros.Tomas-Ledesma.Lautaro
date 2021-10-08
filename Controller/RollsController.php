@@ -31,15 +31,23 @@ class RollsController{
     }
     
     function createRoll(){
-      
+        $roll = $_POST['roll'];
+        $description = $_POST['description'];
+        $this->model->insertRollOnDB($roll,$description);
+        $this->view->redirectList();
     }
 
     function deleteRoll($id){
-        
+        $this->model->deleteRollfromdb($id);
+        $this->view->redirectList();
     }
 
-    function updateRoll($id){
-        
+    function updateRoll(){
+        $id = $_POST['id_roll'];
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $this->model->updateRollFromDB($id, $name, $description);
+        $this->view->redirectList();
     }
 
 }

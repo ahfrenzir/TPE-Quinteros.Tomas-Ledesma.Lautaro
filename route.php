@@ -1,5 +1,6 @@
 <?php
 
+require_once 'controller/LoginController.php';
 require_once 'Controller/RollsController.php';
 require_once 'Controller/ChampionsController.php';
 require_once 'Controller/GeneralController.php';
@@ -16,12 +17,19 @@ $params = explode('/', $action);
 $rollsController = new RollsController();
 $championsController = new ChampionsController();
 $generalController = new GeneralController();
+$loginController= new LoginController();
 
 //var_dump($_GET['action']);
 
 
 
 switch($params[0]){
+    case 'login':
+        $loginController->login();
+        break;
+    case 'verify':
+        $loginController->verifyLogin();
+        break;
     case 'home':
         $generalController->showHome();
         break;
@@ -47,19 +55,14 @@ switch($params[0]){
         $generalController->updateChampion($params[1]); 
         break;
     case 'createRoll': 
-        $rollController->createRoll(); 
+        $rollsController->createRoll(); 
         break;
     case 'deleteRoll': 
-        $rollController->deleteRoll($params[1]); 
+        $rollsController->deleteRoll($params[1]); 
         break;
     case 'updateRoll': 
-        $rollController->updateRoll($params[1]); 
+        $rollsController->updateRoll($params[1]); 
         break;
     /*default:
         showError();*/
-    case 'login':
-        $LoginController->login();
-        break;
-    case 'verify':
-        $LoginController->verifyLogin();
     }

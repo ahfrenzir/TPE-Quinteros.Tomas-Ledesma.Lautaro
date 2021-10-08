@@ -24,7 +24,7 @@
 
 <h2>Editar personaje</h2>
 <form action="updateChampion/{$champion->id_pj}" method="POST">
-    <select name="id_champion">
+    <select name="id_pj">
         {foreach from=$champions item=$champion}
             <option value="{$champion->id_pj}">{$champion->name}</option>
         {/foreach}

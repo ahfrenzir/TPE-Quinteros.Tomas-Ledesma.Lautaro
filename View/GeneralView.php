@@ -28,10 +28,8 @@ class GeneralView{
         $this->smarty->assign('champions', $champions);
         $this->smarty->display('templates/championsByRoll.tpl');
     }
-
-    function renderForm($rolls){
-        $this->smarty->assign('roll', $rolls);
-        $this->smarty->display('templates/championUpdateForm.tpl');
+    
+    function showError(){
+        $this->smarty->display('templates/error.tpl');
     }
-
 }

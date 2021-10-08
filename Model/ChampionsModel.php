@@ -30,10 +30,15 @@ class ChampionsModel{
     }
     
     function insertChampionOnDB($name,$description,$history,$roll){
-        $sentencia = $this->db->prepare("INSERT INTO champions(name,description, history, id_roll) VALUES (?, ?, ?, ?)");
+        $sentencia = $this->db->prepare("INSERT INTO champions (name,description,history,id_roll) VALUES (?, ?, ?, ?)");
         $sentencia->execute(array($name, $description, $history, $roll));
 
     }    
+    /*function insertRollOnDB($roll,$description){
+        $sentencia = $this->db->prepare("INSERT INTO rolls (roll,description) VALUES (?, ?)");
+        $sentencia->execute(array($roll, $description));
+
+    }*/
 
     
     function deleteChampionfromdb($id){
@@ -43,7 +48,6 @@ class ChampionsModel{
 
 
     function updateChampionFromDB($name, $description, $history, $roll, $id){
-
         $sentencia = $this->db->prepare("UPDATE champions SET name='$name',description='$description',history='$history',id_roll='$roll' WHERE id_pj='$id'");
         $sentencia->execute();
 
