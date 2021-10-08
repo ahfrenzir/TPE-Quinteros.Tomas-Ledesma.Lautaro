@@ -39,7 +39,7 @@ class GeneralController{
             $roll = $_POST['id_roll'];
             $this->champController->updateChampion($name, $description, $history, $roll, $id);
         }else{
-            //$this->view->showError();
+            $this->view->showError();
         }
     }
 
