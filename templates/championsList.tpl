@@ -13,19 +13,26 @@
 <form action="createChampion" method="POST">
     <div class="mb-3">
         <input type="text" placeholder="Ingrese el nombre" name="name">
+    </div>
+    <div class="mb-3">
         <input type="text" placeholder="Ingrese su descripción" name="description">
+    </div>
+    <div class="mb-3">
         <textarea name="history" placeholder="Ingrese su historia" id="" cols="30" rows="10"></textarea>
+    </div>
+    <div class="mb-3">
         <select name="id_roll">
             {foreach from=$rolls item=$roll}
                 <option value="{$roll->id_roll}">{$roll->roll}</option>
             {/foreach}
         </select>
-        <input type="submit" value="Crear">
+    </div>
+    <input type="submit" value="Crear">
     </div>
 </form>
 
 <h2>Editar personaje</h2>
-<form action="updateChampion/{$champion->id_pj}" method="POST">
+<form action="updateChampion" method="POST">
     <select name="id_pj">
         {foreach from=$champions item=$champion}
             <option value="{$champion->id_pj}">{$champion->name}</option>

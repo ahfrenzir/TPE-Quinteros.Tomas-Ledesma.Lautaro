@@ -52,7 +52,7 @@ switch($params[0]){
         $championsController->deleteChampion($params[1]); 
         break;
     case 'updateChampion': 
-        $generalController->updateChampion($params[1]); 
+        $generalController->updateChampion(); 
         break;
     case 'createRoll': 
         $rollsController->createRoll(); 

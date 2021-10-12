@@ -31,8 +31,9 @@ class GeneralController{
         $this->view->renderChampionsByRoll($champions, $roll);
     }
 
-    function updateChampion($id){
+    function updateChampion(){
         if(!empty($_POST['name']) && !empty($_POST['description']) && !empty($_POST['history'])){
+            $id = $_POST['id_pj'];
             $name = $_POST['name'];
             $description = $_POST['description'];
             $history = $_POST['history'];
