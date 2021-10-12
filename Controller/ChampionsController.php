@@ -36,7 +36,7 @@ class ChampionsController{
     }
 
     function createChampion(){
-        if(!isset($_POST['name']) && !isset($_POST['description']) && !isset($_POST['history'])){
+        if(!empty($_POST['name']) && !empty($_POST['description']) && !empty($_POST['history'])){
         $name = $_POST['name'];
         $description = $_POST['description'];
         $history = $_POST['history'];
