@@ -3,8 +3,8 @@
 
 <div class="d-flex justify-content-evenly">
     <div class="p-2 bd-highlight">
-        <h2> Inicio De Sesion</h2>
-        <form class=form action="verify" method="POST">
+        <h2>Registrarse</h2>
+        <form method="POST" action="registrarse" class="form">
             <div class="mb-3">
                 <input placeholder="Ingrese su usuario" type="text" name="user" required>
             </div>
@@ -12,10 +12,10 @@
                 <input placeholder="Ingrese su contraseña" type="password" name="password" id="password" required>
             </div>
             <div class="mb-3">
-                <input type="submit" class="btn-submit" value="Iniciar sesión">
+                <input type="submit" class="btn-crearcuenta" value="Crear cuenta">
             </div>
         </form>
-        <h4 class="alerta">{$error}</h4>
+        <h3>{$error}</h3>
     </div>
 </div>
 

@@ -2,15 +2,18 @@
 
 require_once "./Model/ChampionsModel.php";
 require_once "./View/ChampionsView.php";
+require_once "./Helpers/AuthHelper.php";
 
 class ChampionsController{
 
     private $model;
     private $view;
+    private $authHelper;
 
     function __construct(){
         $this->model = new ChampionsModel();
         $this->view = new ChampionsView();
+        $this->authHelper = new AuthHelper();
     }
 
     function getChampion($id){
@@ -31,11 +34,13 @@ class ChampionsController{
 
 
     function showChampion($id){
+        
        $champion = $this->model->getChampion($id);
        $this->view->renderChampion($champion);
     }
 
     function createChampion(){
+        $this->checkloggedIn();
         if(!empty($_POST['name']) && !empty($_POST['description']) && !empty($_POST['history'])){
         $name = $_POST['name'];
         $description = $_POST['description'];
@@ -49,14 +54,18 @@ class ChampionsController{
     }
 
     function deleteChampion($id){
+        $this->checkloggedIn();
         $this->model->deleteChampionFromdb($id);
         $this->view->redirectList();
     }
 
     function updateChampion($name, $description, $history, $roll, $id){
+        $this->checkloggedIn();
         $this->model->updateChampionFromDB($name, $description, $history, $roll, $id);
         $this->view->redirectList();
     }
 
-   
+    function checkLoggedIn(){
+        $this->authHelper->checkLoggedIn();
+    }
 }

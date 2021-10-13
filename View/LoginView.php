@@ -15,7 +15,16 @@ class LoginView{
         $this->smarty->display('templates/login.tpl');
     }
 
-    function showhome(){
-        header("location".BASE_URL."home");
+    function redirectHome(){
+        header("Location: ".BASE_URL."home");
+    }
+    
+    function showRegister($error = ""){
+    $this->smarty->assign('error', $error);  
+    $this->smarty->display('templates/register.tpl');
+    }
+
+    function redirectLogin(){
+        header("Location: ".BASE_URL."login");
     }
 }

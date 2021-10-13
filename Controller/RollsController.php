@@ -2,17 +2,19 @@
 
 require_once './Model/RollsModel.php';
 require_once './View/RollsView.php';
+require_once "./Helpers/AuthHelper.php";
 
 class RollsController{
 
     private $model;
     private $view;
-
-    
+    private $authHelper;
 
     function __construct(){
         $this->model = new RollsModel();
         $this->view = new RollsView();
+        $this->loginController = new LoginController();
+        $this->authHelper = new AuthHelper();
     }
     
     function getRolls(){
@@ -31,6 +33,7 @@ class RollsController{
     }
     
     function createRoll(){
+        $this->checkLoggedIn();
         $roll = $_POST['roll'];
         $description = $_POST['description'];
         $this->model->insertRollOnDB($roll,$description);
@@ -38,11 +41,13 @@ class RollsController{
     }
 
     function deleteRoll($id){
+        $this->checkLoggedIn();
         $this->model->deleteRollfromdb($id);
         $this->view->redirectList();
     }
 
     function updateRoll(){
+        $this->checkLoggedIn();
         $id = $_POST['id_roll'];
         $name = $_POST['name'];
         $description = $_POST['description'];
@@ -50,4 +55,7 @@ class RollsController{
         $this->view->redirectList();
     }
 
+    function checkLoggedIn(){
+        $this->authHelper->checkLoggedIn();
+    }
 }

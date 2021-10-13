@@ -34,13 +34,7 @@ class ChampionsModel{
         $sentencia->execute(array($name, $description, $history, $roll));
 
     }    
-    /*function insertRollOnDB($roll,$description){
-        $sentencia = $this->db->prepare("INSERT INTO rolls (roll,description) VALUES (?, ?)");
-        $sentencia->execute(array($roll, $description));
 
-    }*/
-
-    
     function deleteChampionfromdb($id){
         $sentencia = $this->db ->prepare("DELETE FROM champions WHERE id_pj=?");
         $sentencia->execute(array($id));

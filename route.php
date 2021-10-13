@@ -1,6 +1,6 @@
 <?php
 
-require_once 'controller/LoginController.php';
+require_once 'Controller/LoginController.php';
 require_once 'Controller/RollsController.php';
 require_once 'Controller/ChampionsController.php';
 require_once 'Controller/GeneralController.php';
@@ -27,8 +27,17 @@ switch($params[0]){
     case 'login':
         $loginController->login();
         break;
+    case 'logout':
+        $loginController->logout();
+        break;
     case 'verify':
         $loginController->verifyLogin();
+        break;
+    case 'registro':
+        $loginController->showRegister();
+        break;
+    case 'registrarse':
+        $loginController->register();
         break;
     case 'home':
         $generalController->showHome();
