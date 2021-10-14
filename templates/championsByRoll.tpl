@@ -1,7 +1,7 @@
 {include file="templates/header.tpl"}
 
-<h1> {$titulo} {$roll->roll} </h1>
-<h4> {$roll->description} </h4>
+<h1 class="text-center"> {$titulo} {$roll->roll} </h1>
+<h4 class="text-center lead"> {$roll->description} </h4>
 <ul class="list-group">
     {foreach from=$champions item=$champion}
         <li class="list-group-item">
@@ -11,6 +11,6 @@
     {/foreach}
 </ul>
 
-
+<img src="{BASE_URL}/img/rolls.jpg " class="rounded mx-auto d-block">
 
 {include file="templates/footer.tpl"}

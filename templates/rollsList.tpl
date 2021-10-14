@@ -4,7 +4,7 @@
     {foreach from=$rolls item=$roll}
         <li class="list-group-item">
             <button type="button" class="btn btn-outline-primary"><a href="showChampsByRoll/{$roll->id_roll}">
-                    {$roll->roll}</a></button> : {$roll->description}
+{$roll->roll}</a></button> : {$roll->description}
             <button type="button" class="btn btn-outline-danger"> <a href="deleteRoll/{$roll->id_roll}">Borrar</a></button>
         </li>
     {/foreach}
