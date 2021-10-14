@@ -2,24 +2,29 @@
 
 require_once 'libs/smarty-3.1.39/smarty-3.1.39/libs/Smarty.class.php';
 
-class ChampionsView{
+class ChampionsView
+{
 
     private $smarty;
 
-    function __construct(){
-        $this->smarty= new Smarty();
+    function __construct()
+    {
+        $this->smarty = new Smarty();
     }
 
-    function renderChampion($champion){
+    function renderChampion($champion)
+    {
         $this->smarty->assign('champions', $champion);
         $this->smarty->display('templates/champion.tpl');
     }
 
-    function redirectList(){
-        header("Location: ".BASE_URL."campeones");
+    function redirectList()
+    {
+        header("Location: " . BASE_URL . "campeones");
     }
-    
-    function showError(){
+
+    function showError()
+    {
         $this->smarty->display('templates/error.tpl');
     }
 }

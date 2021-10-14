@@ -1,5 +1,4 @@
 <?php
-require_once "./Controller/GeneralController.php";
 require_once "./Model/Usermodel.php";
 require_once "./View/LoginView.php";
 
@@ -15,27 +14,28 @@ class LoginController
         $this->view = new LoginView();
     }
 
-    function login(){
+    function login()
+    {
         $this->view->showlogin();
     }
 
-    function register(){
+    function register()
+    {
         if (!empty($_POST['user']) && !empty($_POST['password'])) {
             $username = $this->model->getUser($_POST['user']);
-            if($_POST['user'] == $username->user){
+            if ($_POST['user'] == $username->user) {
                 $this->view->showRegister("Este usuario ya existe");
-            }else{
+            } else {
                 $user = $_POST['user'];
                 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    
+
                 $this->model->register($user, $password);
                 $this->view->redirectLogin();
             }
         }
     }
 
-    function verifyLogin()
-    {
+    function verifyLogin(){
         if (!empty($_POST['user']) && !empty($_POST['password'])) {
             $userForm = $_POST['user'];
             $passwordForm = $_POST['password'];
@@ -54,14 +54,15 @@ class LoginController
         }
     }
 
-    function showRegister(){
+    function showRegister()
+    {
         $this->view->showRegister();
     }
 
-    function logout() {
+    function logout()
+    {
         session_start();
         session_destroy();
         $this->view->redirectHome();
     }
-
 }
