@@ -25,25 +25,4 @@ class GeneralController
     {
         $this->view->renderHome();
     }
-
-    function showChampions()
-    {
-        $champions = $this->champController->getChampions();
-        $rolls = $this->rollsController->getRolls();
-        $this->view->renderChampionList($champions, $rolls);
-    }
-
-    function showChampsByRoll($id)
-    {
-        $champions = $this->champController->getChampionsByRoll($id);
-        $roll = $this->rollsController->getRollForChampion($id);
-        $this->view->renderChampionsByRoll($champions, $roll);
-    }
-
-    
-
-    function checkLoggedIn()
-    {
-        $this->authHelper->checkLoggedIn();
-    }
 }
