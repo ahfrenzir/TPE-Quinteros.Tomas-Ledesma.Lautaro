@@ -10,10 +10,12 @@ class ChampionsController
     private $model;
     private $view;
     private $authHelper;
+    private $rollsModel;
 
     function __construct()
     {
         $this->model = new ChampionsModel();
+        $this->rollsModel = new RollsModel();
         $this->view = new ChampionsView();
         $this->authHelper = new AuthHelper();
     }
@@ -25,10 +27,18 @@ class ChampionsController
     }
 
 
-    function getChampions()
+    function showChampions()
     {
         $champions = $this->model->getChampionsFromDB();
-        return $champions;
+        $rolls = $this->rollsModel->getRollsFromDB();
+        $this->view->renderChampionList($champions, $rolls);
+    }
+    
+    function showChampsByRoll($id)
+    {
+        $champions = $this->model->getChampionsByRoll($id);
+        $roll = $this->rollsModel->getRollForChampion($id);
+        $this->view->renderChampionsByRoll($champions, $roll);
     }
 
     function getChampionsByRoll($id)

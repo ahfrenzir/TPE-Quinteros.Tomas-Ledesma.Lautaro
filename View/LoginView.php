@@ -34,5 +34,7 @@ class LoginView
         header("Location: " . BASE_URL . "login");
     }
 
+    
+
 
 }

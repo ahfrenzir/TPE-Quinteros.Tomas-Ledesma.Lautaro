@@ -40,10 +40,10 @@ switch ($params[0]) {
         $generalController->showHome();
         break;
     case 'campeones':
-        $generalController->showChampions();
+        $championsController->showChampions();
         break;
     case 'showChampsByRoll':
-        $generalController->showChampsByRoll($params[1]);
+        $championsController->showChampsByRoll($params[1]);
         break;
     case 'updateChampion':
         $championsController->updateChampion();

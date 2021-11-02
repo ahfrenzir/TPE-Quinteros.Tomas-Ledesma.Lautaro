@@ -15,7 +15,7 @@
                 <input type="submit" class="btn-submit" value="Iniciar sesión">
             </div>
         </form>
-        <h4 class="alerta">{$error}</h4>
+        <h4 class="alerta text-center">{$error}</h4>
     </div>
 </div>
 
