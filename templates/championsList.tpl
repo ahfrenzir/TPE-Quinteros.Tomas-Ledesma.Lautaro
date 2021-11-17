@@ -1,4 +1,8 @@
-{include file="templates/header.tpl"}
+{if $logged}
+    {include file="templates/headerLogout.tpl"}
+    {else}
+        {include file="templates/header.tpl"}
+{/if}
 
 <ul class="list-group">
     {foreach from=$champions item=$champion}

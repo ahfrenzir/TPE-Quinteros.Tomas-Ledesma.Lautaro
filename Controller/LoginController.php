@@ -1,22 +1,26 @@
 <?php
 require_once "./Model/Usermodel.php";
 require_once "./View/LoginView.php";
+require_once "./Helpers/AuthHelper.php";
 
 class LoginController
 {
 
     private $model;
     private $view;
+    private $authHelper;
 
     function __construct()
     {
         $this->model = new UserModel();
         $this->view = new LoginView();
+        $this->authHelper= new AuthHelper();
     }
 
     function login()
     {
-        $this->view->showlogin();
+        $logged = $this->authHelper->checkLoggedIn();
+        $this->view->showlogin($logged);
     }
 
     function register()
@@ -30,7 +34,7 @@ class LoginController
                 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
                 $this->model->register($user, $password);
-                $this->view->redirectLogin();
+                $this->verifyLogin();
             }
         }
     }
@@ -46,8 +50,10 @@ class LoginController
 
                 session_start();
                 $_SESSION["user"] = $user;
+                $_SESSION["admin"] = $user->admin;
 
                 $this->view->redirectHome();
+                
             } else {
                 $this->view->showlogin("Acceso Denegado");
             }

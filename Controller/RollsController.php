@@ -15,31 +15,28 @@ class RollsController
     {
         $this->model = new RollsModel();
         $this->view = new RollsView();
-        $this->loginController = new LoginController();
+        $this->championsModel = new ChampionsModel();
         $this->authHelper = new AuthHelper();
-    }
-
-    function getRolls()
-    {
-        $rolls = $this->model->getRollsFromDB();
-        return $rolls;
-    }
-
-    function getRollForChampion($id)
-    {
-        $champions = $this->model->getRollForChampion($id);
-        return $champions;
     }
 
     function showRolls()
     {
+        $logged = $this->authHelper->checkLoggedIn();
         $rolls = $this->model->getRollsFromDB();
-        $this->view->renderRolls($rolls);
+        $this->view->renderRolls($rolls, $logged);
+    }
+
+    function showChampsByRoll($id)
+    {
+        $logged = $this->authHelper->checkLoggedIn();
+        $champions = $this->championsModel->getChampionsByRoll($id);
+        $roll = $this->model->getRollForChampion($id);
+        $this->view->renderChampionsByRoll($champions, $roll, $logged);
     }
 
     function createRoll()
     {
-        $this->checkLoggedIn();
+        $this->restrictLogin();
         $roll = $_POST['roll'];
         $description = $_POST['description'];
         $this->model->insertRollOnDB($roll, $description);
@@ -48,14 +45,14 @@ class RollsController
 
     function deleteRoll($id)
     {
-        $this->checkLoggedIn();
+        $this->restrictLogin();
         $this->model->deleteRollfromdb($id);
         $this->view->redirectList();
     }
 
     function updateRoll()
     {
-        $this->checkLoggedIn();
+        $this->restrictLogin();
         $id = $_POST['id_roll'];
         $name = $_POST['name'];
         $description = $_POST['description'];
@@ -63,8 +60,8 @@ class RollsController
         $this->view->redirectList();
     }
 
-    function checkLoggedIn()
+    function restrictLogin()
     {
-        $this->authHelper->checkLoggedIn();
+        $this->authHelper->restrictLoggedIn();
     }
 }

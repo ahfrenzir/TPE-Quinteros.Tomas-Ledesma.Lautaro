@@ -20,44 +20,26 @@ class ChampionsController
         $this->authHelper = new AuthHelper();
     }
 
-    function getChampion($id)
-    {
-        $champion = $this->model->getChampion($id);
-        return $champion;
-    }
-
-
     function showChampions()
     {
+        $logged = $this->authHelper->checkLoggedIn();
         $champions = $this->model->getChampionsFromDB();
         $rolls = $this->rollsModel->getRollsFromDB();
-        $this->view->renderChampionList($champions, $rolls);
+        $this->view->renderChampionList($champions, $rolls, $logged);
+    
     }
     
-    function showChampsByRoll($id)
-    {
-        $champions = $this->model->getChampionsByRoll($id);
-        $roll = $this->rollsModel->getRollForChampion($id);
-        $this->view->renderChampionsByRoll($champions, $roll);
-    }
-
-    function getChampionsByRoll($id)
-    {
-        $champions = $this->model->getChampionsByRoll($id);
-        return $champions;
-    }
-
 
     function showChampion($id)
     {
-
+        $logged = $this->authHelper->checkLoggedIn();
         $champion = $this->model->getChampion($id);
-        $this->view->renderChampion($champion);
+        $this->view->renderChampion($champion, $logged);
     }
 
     function createChampion()
     {
-        $this->checkloggedIn();
+        $this->restrictLogin();
         if (!empty($_POST['name']) && !empty($_POST['description']) && !empty($_POST['history'])) {
             $name = $_POST['name'];
             $description = $_POST['description'];
@@ -72,14 +54,14 @@ class ChampionsController
 
     function deleteChampion($id)
     {
-        $this->checkloggedIn();
+        $this->restrictLogin();
         $this->model->deleteChampionFromdb($id);
         $this->view->redirectList();
     }
 
     function updateChampion()
     {
-        $this->checkLoggedIn();
+        $this->restrictLogin();
         if (!empty($_POST['name']) && !empty($_POST['description']) && !empty($_POST['history'])) {
             $id = $_POST['id_pj'];
             $name = $_POST['name'];
@@ -93,8 +75,8 @@ class ChampionsController
         }
     }
 
-    function checkLoggedIn()
+    function restrictLogin()
     {
-        $this->authHelper->checkLoggedIn();
+        $this->authHelper->restrictLoggedIn();
     }
 }

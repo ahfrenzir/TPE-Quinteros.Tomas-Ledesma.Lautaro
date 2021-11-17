@@ -12,9 +12,13 @@ class GeneralView
         $this->smarty = new Smarty();
     }
 
-    function renderHome()
+    function renderHome($logged)
     {
+        $this->smarty->assign('logged', $logged);
         $this->smarty->display('templates/home.tpl');
+    }
+    function renderAdminHome(){
+        $this->smarty->display('templates/Admin/adminHome.tpl');
     }
 
     function showError()

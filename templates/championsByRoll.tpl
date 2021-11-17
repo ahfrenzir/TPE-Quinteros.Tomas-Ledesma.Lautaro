@@ -1,5 +1,8 @@
-{include file="templates/header.tpl"}
-
+{if $logged}
+    {include file="templates/headerLogout.tpl"}
+    {else}
+        {include file="templates/header.tpl"}
+{/if}
 <h1 class="text-center"> {$titulo} {$roll->roll} </h1>
 <h4 class="text-center lead"> {$roll->description} </h4>
 <ul class="list-group">
