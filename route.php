@@ -36,6 +36,15 @@ switch ($params[0]) {
     case 'registrarse':
         $loginController->register();
         break;
+    case 'usuarios':
+        $generalController->showUsers();
+        break;
+    case 'deleteUser':
+        $generalController->deleteUser($params[1]);
+        break;
+    case 'changeAdmin':
+        $generalController->changeAdmin($params[1]);
+        break;
     case 'home':
         $generalController->showHome();
         break;

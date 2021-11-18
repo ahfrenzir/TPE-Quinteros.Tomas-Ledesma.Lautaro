@@ -31,9 +31,10 @@ class LoginController
                 $this->view->showRegister("Este usuario ya existe");
             } else {
                 $user = $_POST['user'];
+                $admin = 0;
                 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-                $this->model->register($user, $password);
+                $this->model->register($user, $password, $admin);
                 $this->verifyLogin();
             }
         }

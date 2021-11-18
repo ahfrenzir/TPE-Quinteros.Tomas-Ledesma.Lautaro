@@ -21,8 +21,19 @@ class GeneralView
         $this->smarty->display('templates/Admin/adminHome.tpl');
     }
 
+    function renderUsersList($users){
+        $this->smarty->assign('users', $users);
+        $this->smarty->display('templates/Admin/adminUsers.tpl');
+
+    }
+
     function showError()
     {
         $this->smarty->display('templates/error.tpl');
+    }
+
+    function redirectUsers()
+    {
+        header("Location: " . BASE_URL . "usuarios");
     }
 }
