@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2021 a las 21:26:47
+-- Tiempo de generación: 18-11-2021 a las 22:46:01
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.3.29
 
@@ -74,6 +74,21 @@ INSERT INTO `champions` (`id_pj`, `name`, `description`, `history`, `id_roll`) V
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comments`
+--
+
+CREATE TABLE `comments` (
+  `id_comentario` int(255) NOT NULL,
+  `cuerpo` varchar(2000) NOT NULL,
+  `fecha` date NOT NULL,
+  `valoracion` int(1) NOT NULL,
+  `usuario` varchar(200) NOT NULL,
+  `id_campeon` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `rolls`
 --
 
@@ -104,19 +119,21 @@ INSERT INTO `rolls` (`id_roll`, `roll`, `description`) VALUES
 CREATE TABLE `users` (
   `id` int(255) NOT NULL,
   `user` varchar(50) NOT NULL,
-  `password` varchar(200) NOT NULL
+  `password` varchar(200) NOT NULL,
+  `admin` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `user`, `password`) VALUES
-(18, 'tomas', '$2y$10$fWxdfDWNGjFz58.kbY2bRe14.HcRw.5FJs5MDyuxP9H'),
-(19, '123', '$2y$10$HIExyzLTmLak7tsUVisS..j130l55n5jqT1JcIaBh94'),
-(20, 'lau', '$2y$10$xqadQ05eBKVLE1is0alfBO2IhKD7PgpYq.oAGCw8uBy9a3j.t6b2i'),
-(21, 'hola', '$2y$10$W.4qudGliTFNce2RullLwuxzdbxi54lMd8BdvXD6sKd1B6kjLfUN6'),
-(22, 'manolo', '$2y$10$65wgnzNMZcSFO7qs8q2.ye3KocfVpwP.f5hPYYiWd7KS.UYfxkZpK');
+INSERT INTO `users` (`id`, `user`, `password`, `admin`) VALUES
+(28, 'qweqweqwe', '$2y$10$bH7arlU3F1rhFk45ZQt2SOAXFXVsr6AE3wXT8FLeo8CKSoeiAAdbS', 1),
+(31, 'fasdasd', '$2y$10$4vQFKtLscOeBqIMVqU5pfuds8c3KvSrB1Pv7A5yCTcIfJ6g2WENvC', 0),
+(32, 'werwerwer', '$2y$10$Q8jsWdU3RDSx9GcS/SCaCuBWasBvTn6m7ucrvuj3fMXIP2ZEMVWUy', 0),
+(33, 'admin', '$2a$12$X26IM7INhmDvDY6olf8GtOryJ04qShPnZH6Yl1Anw5Ha7D3CAkLQS', 1),
+(35, 'qweqweqweqweqw', '$2y$10$y6ySTJ3QsnVQJXA9mjoNrOz.z9kxcpcXlRloLIIpq0e/4auv3xv9u', 0),
+(36, 'qweqweqweqwewewe', '$2y$10$4AxSGEVCkoBxsNiCmypyT.yydN8MmlpQgyiweiie6Td/M9i8ANHKC', 0);
 
 --
 -- Índices para tablas volcadas
@@ -128,6 +145,13 @@ INSERT INTO `users` (`id`, `user`, `password`) VALUES
 ALTER TABLE `champions`
   ADD PRIMARY KEY (`id_pj`),
   ADD KEY `id_roll` (`id_roll`);
+
+--
+-- Indices de la tabla `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD UNIQUE KEY `id_campeon` (`id_campeon`);
 
 --
 -- Indices de la tabla `rolls`
@@ -149,7 +173,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `champions`
 --
 ALTER TABLE `champions`
-  MODIFY `id_pj` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_pj` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT de la tabla `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id_comentario` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `rolls`
@@ -161,7 +191,7 @@ ALTER TABLE `rolls`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Restricciones para tablas volcadas
@@ -172,6 +202,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `champions`
   ADD CONSTRAINT `champions_ibfk_1` FOREIGN KEY (`id_roll`) REFERENCES `rolls` (`id_roll`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`id_campeon`) REFERENCES `champions` (`id_pj`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -39,14 +39,18 @@ class GeneralController
         $this->view->renderUsersList($users);
     }
 
-    function changeAdmin($id){
-        $user = $this->userModel->getUser($id);
-        if($user->admin == 1){
-            $admin = 0;
+    function changeAdmin($user){
+        $users = $this->userModel->getUser($user);
+        var_dump($users);
+        var_dump($users->admin);
+        if($users->admin == 1){
+            $permission = 0;
         }else{
-            $admin = 1;
+            $permission = 1;
         }
-        $this->userModel->changePermissions($id, $admin);
+        $this->userModel->changePermissions($users->user, $permission);
+        $this->view->redirectUsers();
+        
     }
 
     function deleteUser($id){

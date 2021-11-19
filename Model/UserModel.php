@@ -21,6 +21,7 @@ class UserModel
         $query = $this->db->prepare('SELECT * FROM users WHERE user = ?');
         $query->execute([$user]);
         return $query->fetch(PDO::FETCH_OBJ);
+        
     }
 
     function deleteUser($id){
@@ -28,9 +29,9 @@ class UserModel
         $sentencia->execute(array($id));
     }
 
-    function changePermissions($id, $permission){
-        $sentencia = $this->db->prepare("UPDATE users SET admin='$permission' WHERE id_roll='$id'");
-        $sentencia->execute();
+    function changePermissions($user, $permission){
+        $sentencia = $this->db->prepare("UPDATE users SET admin=? WHERE user=?");
+        $sentencia->execute(array($permission, $user));
     }
 
     function register($user, $password, $admin)

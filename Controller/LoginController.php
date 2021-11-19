@@ -27,14 +27,15 @@ class LoginController
     {
         if (!empty($_POST['user']) && !empty($_POST['password'])) {
             $username = $this->model->getUser($_POST['user']);
+            var_dump($username);
             if ($_POST['user'] == $username->user) {
                 $this->view->showRegister("Este usuario ya existe");
             } else {
                 $user = $_POST['user'];
-                $admin = 0;
                 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                $admin = 0;
 
-                $this->model->register($user, $password, $admin);
+                $this->model->register($user, $password,$admin);
                 $this->verifyLogin();
             }
         }
@@ -46,6 +47,7 @@ class LoginController
             $passwordForm = $_POST['password'];
 
             $user = $this->model->getUser($userForm);
+            var_dump($user);
 
             if ($user && password_verify($passwordForm, ($user->password))) {
 
