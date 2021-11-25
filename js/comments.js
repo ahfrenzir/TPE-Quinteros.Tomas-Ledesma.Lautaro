@@ -2,8 +2,10 @@
 window.onload = getComments;
 let API_URL = "api/comment";
 let form = document.getElementById("form-comment");
-if(document.querySelector("#submit-btn")){
-    document.querySelector("#submit-btn").addEventListener("click", createComment);
+if (document.querySelector("#submit-btn")) {
+  document
+    .querySelector("#submit-btn")
+    .addEventListener("click", createComment);
 }
 
 let app = new Vue({
@@ -51,27 +53,30 @@ async function createComment() {
   console.log(output);
   console.log(id_champion);
   console.log(punctuation);
-
-  let comment = {
-    body: body,
-    date: output,
-    punctuation: punctuation,
-    id_champion: id_champion,
-  };
-  try {
-    let response = await fetch(API_URL, {
-      method: "POST",
-      mode: "cors",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(comment),
-    });
-    if (response.ok) {
-      console.log(response);
-      getComments();
-      document.querySelector("#comment-body").value = "";
+  if (body) {
+    let comment = {
+      body: body,
+      date: output,
+      punctuation: punctuation,
+      id_champion: id_champion,
+    };
+    try {
+      let response = await fetch(API_URL, {
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(comment),
+      });
+      if (response.ok) {
+        console.log(response);
+        getComments();
+        document.querySelector("#comment-body").value = "";
+      }
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
+  }else{
+      document.querySelector("#error").innerHTML = "No has ingresado ningun comentario, vuelve a intentarlo"
   }
 }
 

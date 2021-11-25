@@ -39,7 +39,7 @@ class RollsModel
 
     function updateRollfromdb($id, $name, $description)
     {
-        $sentencia = $this->db->prepare("UPDATE rolls SET roll='$name', description='$description' WHERE id_roll='$id'");
-        $sentencia->execute();
+        $sentencia = $this->db->prepare("UPDATE rolls SET roll=?, description=? WHERE id_roll=?");
+        $sentencia->execute(array($name, $description, $id));
     }
 }

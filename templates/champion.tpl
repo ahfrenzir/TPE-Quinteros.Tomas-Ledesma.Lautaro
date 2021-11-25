@@ -32,7 +32,7 @@
         <div class="input-group">
             <span class="input-group-text">¡Dejanos tu comentario!</span>
             <textarea class="form-control" aria-label="With textarea" placeholder="Escribe aquí..."
-                id="comment-body"></textarea>
+                id="comment-body" required></textarea>
             <select class="form-select " aria-label="Default select example" id="#punctuation">
                 <option value="1" selected> 1 </option>
                 <option value="2"> 2 </option>
@@ -45,9 +45,9 @@
         {/if}
         </form>
 
-
+        <p id="error" class="text-center lead alert link-danger"></p>
 <div id="app">
-    <h2> Comentarios de {$champions->name} </h2>
+    <h2 > Comentarios de {$champions->name} </h2>
     {include file="vue/comments.tpl"}
 </div>
 

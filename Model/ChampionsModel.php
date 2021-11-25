@@ -48,8 +48,8 @@ class ChampionsModel
 
     function updateChampionFromDB($name, $description, $history, $roll, $id)
     {
-        $sentencia = $this->db->prepare("UPDATE champions SET name='$name',description='$description',history='$history',id_roll='$roll' WHERE id_pj='$id'");
-        $sentencia->execute();
+        $sentencia = $this->db->prepare("UPDATE champions SET name=?, description=?, history=? ,id_roll=?) WHERE id_pj=?");
+        $sentencia->execute(array($name,$description,$history,$roll,$id));
     }
 
     function uploadImage($id, $image)

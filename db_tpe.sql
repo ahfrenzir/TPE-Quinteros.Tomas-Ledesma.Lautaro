@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2021 a las 21:37:51
+-- Tiempo de generación: 25-11-2021 a las 02:41:52
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.3.31
 
@@ -33,7 +33,7 @@ CREATE TABLE `champions` (
   `description` varchar(1000) NOT NULL,
   `history` varchar(2000) NOT NULL,
   `id_roll` int(45) NOT NULL,
-  `img` varchar(200) CHARACTER SET latin1 DEFAULT NULL
+  `img` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -72,6 +72,78 @@ INSERT INTO `champions` (`id_pj`, `name`, `description`, `history`, `id_roll`, `
 (45, 'Poppy', 'la guardiana del martillo', 'En Runaterra hay un gran número de campeones valerosos, pero muy pocos son tan tenaces como Poppy. Esta yordle tan obstinada porta el legendario martillo de Orlon, que la dobla en tamaño, y se ha pasado infinidad de años buscando en secreto al famoso \'\'héroe de Demacia\'\' quien, supuestamente, es el legítimo portador de su arma. Mientras tanto, lucha diligentemente en la batalla, haciendo retroceder a los enemigos del reino con cada golpe giratorio.', 12, NULL),
 (46, 'Sejuani', 'la furia del norte', 'Sejuani es la brutal e implacable comandante hija del hielo de la tribu Garra Invernal, una de las más temidas de Freljord. La supervivencia de su gente es una constante y desesperada lucha contra los elementos, lo que los obliga a asaltar a noxianos, demacianos y avarosanos por igual para soportar los gélidos inviernos. La propia Sejuani lidera la mayoría de estas peligrosas refriegas desde la montura de su jabalí drüvask, Bristle, haciendo uso de su mayal de hielo puro para congelar y hacer añicos a sus enemigos.', 12, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comments`
+--
+
+CREATE TABLE `comments` (
+  `id_comment` int(255) NOT NULL,
+  `body` varchar(2000) NOT NULL,
+  `date` varchar(200) NOT NULL,
+  `punctuation` int(1) NOT NULL,
+  `id_champion` int(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comments`
+--
+
+INSERT INTO `comments` (`id_comment`, `body`, `date`, `punctuation`, `id_champion`) VALUES
+(81, 'asdasdqweqwe', '24/11/2021', 3, 14),
+(84, 'La verdad es que este personaje es malardo', '24/11/2021', 1, 13);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rolls`
+--
+
+CREATE TABLE `rolls` (
+  `id_roll` int(225) NOT NULL,
+  `roll` varchar(45) NOT NULL,
+  `description` varchar(2000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `rolls`
+--
+
+INSERT INTO `rolls` (`id_roll`, `roll`, `description`) VALUES
+(10, 'Magos', 'Los magos son por lo general campeones a distancia que priorizan habilidades y hechizos poderosos por sobre sus ataque básicos. Tipicamente, los magos se caracterizan por tener una combinación de hechizos de larga distancia, area de efecto (AoE) o de gran utilidad para realizar su trabajo.'),
+(11, 'Asesinos', 'Un Asesino es un campeón especializado en matar o desestabilizar objetivos de alto valor estratégico. Orientados a la infiltración, engaño, y movimiento, los Asesinos son cazadores oportunistas que buscan el momento favorable antes de entrar al combate. Independientemente del tamaño del equipo enemigo, el Asesino se especializa en el arte de ocultarse y matar. Atacan cuando llega el momento – ni antes, ni después.'),
+(12, 'Tanques', 'Los Tanques son campeones de combate cuerpo a cuerpo que sacrifican el daño a cambio de un poderoso control de masas. Si bien son capaces de enfrentarse a enemigos en combate, el objetivo de un tanque no es matar enemigos; más bien, los tanques se destacan por desestabilizar a los enemigos y desviar el foco hacia ellos mismos, lo que les permite bloquear objetivos específicos (o varios objetivos a la vez), así como eliminar (o pelar ) amenazas de sus aliados.'),
+(15, 'Tiradores', 'Los Tiradores son campeones a distancia cuyo poder gira casi exclusivamente en torno a sus ataques básicos: utilizando su alcance para causar daños continuos masivos desde la distancia, los tiradores son capaces de derribar incluso al más duro de los oponentes cuando se coloca detrás de la seguridad de su equipo, y sobresalen en asegurar los objetivos del mapa, como el Dragon, el Baron Nashor y las torretas.'),
+(16, 'Luchadores', 'El rol del Luchador es el de combatiente de corto alcance, posee capacidad ofensiva-defensiva balanceada. No poseen la capacidad de absorción de daño de un Tanque ni infligen daño como un Asesino, el daño de un Luchador ejercido de continuo, hace de él una mayor amenaza. Cada Luchador posee una mezcla única de movilidad, daño, disrupción y supervivencia.'),
+(17, 'Soportes', 'Los campeones de soporte se centran en ayudar a sus aliados mediente bonificaciones, escudos y/o curas para ellos o bien disrumpiendo las lineas enemigas mediante el uso de Control de masas (CC). Desde la fase de lineas hasta finales de la partida, los soportes otorgan ventajas y crean oportunidades para sus compañeros de equipo puedan capitalizar. Un soporte habilidoso le da a su equipo la ayuda necesaria para poder llevarse la victoria y bien es capaz de cambiar el resultado de la batalla con una buena jugada.');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(255) NOT NULL,
+  `user` varchar(50) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `admin` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `user`, `password`, `admin`) VALUES
+(28, 'qweqweqwe', '$2y$10$bH7arlU3F1rhFk45ZQt2SOAXFXVsr6AE3wXT8FLeo8CKSoeiAAdbS', 0),
+(31, 'fasdasd', '$2y$10$4vQFKtLscOeBqIMVqU5pfuds8c3KvSrB1Pv7A5yCTcIfJ6g2WENvC', 0),
+(32, 'werwerwer', '$2y$10$Q8jsWdU3RDSx9GcS/SCaCuBWasBvTn6m7ucrvuj3fMXIP2ZEMVWUy', 0),
+(33, 'admin', '$2a$12$X26IM7INhmDvDY6olf8GtOryJ04qShPnZH6Yl1Anw5Ha7D3CAkLQS', 1),
+(35, 'qweqweqweqweqw', '$2y$10$y6ySTJ3QsnVQJXA9mjoNrOz.z9kxcpcXlRloLIIpq0e/4auv3xv9u', 0),
+(36, 'qweqweqweqwewewe', '$2y$10$4AxSGEVCkoBxsNiCmypyT.yydN8MmlpQgyiweiie6Td/M9i8ANHKC', 0),
+(37, 'hola', '$2y$10$xI2M5uYwORdnTHPx1ks/g.y/qUwuoFATEfYJdR6ptUvY3FEdwNg1y', 0);
+
 --
 -- Índices para tablas volcadas
 --
@@ -84,6 +156,25 @@ ALTER TABLE `champions`
   ADD KEY `id_roll` (`id_roll`);
 
 --
+-- Indices de la tabla `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id_comment`),
+  ADD KEY `id_champion` (`id_champion`);
+
+--
+-- Indices de la tabla `rolls`
+--
+ALTER TABLE `rolls`
+  ADD PRIMARY KEY (`id_roll`);
+
+--
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -91,7 +182,25 @@ ALTER TABLE `champions`
 -- AUTO_INCREMENT de la tabla `champions`
 --
 ALTER TABLE `champions`
-  MODIFY `id_pj` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_pj` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT de la tabla `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id_comment` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+
+--
+-- AUTO_INCREMENT de la tabla `rolls`
+--
+ALTER TABLE `rolls`
+  MODIFY `id_roll` int(225) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Restricciones para tablas volcadas
@@ -101,7 +210,13 @@ ALTER TABLE `champions`
 -- Filtros para la tabla `champions`
 --
 ALTER TABLE `champions`
-  ADD CONSTRAINT `champions_ibfk_1` FOREIGN KEY (`id_roll`) REFERENCES `rolls` (`id_roll`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `champions_ibfk_1` FOREIGN KEY (`id_roll`) REFERENCES `rolls` (`id_roll`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`id_champion`) REFERENCES `champions` (`id_pj`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
