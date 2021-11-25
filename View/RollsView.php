@@ -31,7 +31,7 @@ class RollsView
         $this->smarty->display('templates/rollsList.tpl');
     }
 
-    function showError($admin,$logged)
+    function showError($logged,$admin)
     { 
         $this->smarty->assign('admin', $admin);
         $this->smarty->assign('logged', $logged);
