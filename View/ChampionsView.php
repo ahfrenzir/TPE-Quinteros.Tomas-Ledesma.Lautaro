@@ -38,8 +38,10 @@ class ChampionsView
         header("Location: " . BASE_URL . "campeones");
     }
 
-    function showError()
-    {
+    function showError($admin,$logged)
+    { 
+        $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('logged', $logged);
         $this->smarty->display('templates/error.tpl');
     }
 }
