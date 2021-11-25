@@ -4,7 +4,7 @@
 
 <ul class="list-group ">
     {foreach from=$users item=$user}
-        <li class="list-group-item text-center">
+        <li class="list-group-item text-center container-lg">
             {$user->user} | 
             {if $user->admin == '1'}
                 Admin

@@ -21,17 +21,19 @@ class RollsController
 
     function showRolls()
     {
+        $admin = $this->authHelper->checkRoll();
         $logged = $this->authHelper->checkLoggedIn();
         $rolls = $this->model->getRollsFromDB();
-        $this->view->renderRolls($rolls, $logged);
+        $this->view->renderRolls($rolls, $logged, $admin);
     }
 
     function showChampsByRoll($id)
     {
+        $admin = $this->authHelper->checkRoll();
         $logged = $this->authHelper->checkLoggedIn();
         $champions = $this->championsModel->getChampionsByRoll($id);
         $roll = $this->model->getRollForChampion($id);
-        $this->view->renderChampionsByRoll($champions, $roll, $logged);
+        $this->view->renderChampionsByRoll($champions, $roll, $logged, $admin);
     }
 
     function createRoll()

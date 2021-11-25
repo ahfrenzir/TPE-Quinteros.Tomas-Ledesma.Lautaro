@@ -27,7 +27,7 @@ class AuthHelper
 
     function checkRoll()
     {
-        if(isset($_SESSION)){
+        if($this->checkLoggedIn()){
             if (($_SESSION["admin"]) != 1) {
                 return false;
                 die();
@@ -36,19 +36,31 @@ class AuthHelper
                 die();
             }
 
+        }else{
+            return false;
         }
     }
     
     function checkLoggedIn()
     {
-        
-        session_start();
-        if (!isset($_SESSION["user"])) {
-            return false;
-            die();
-        } else {
-            return true;
-            die();
+        if(session_status() != 2){
+
+            session_start();
+            if (!isset($_SESSION["user"])) {
+                return false;
+                die();
+            } else {
+                return true;
+                die();
+            }
+        }else{
+            if (!isset($_SESSION["user"])) {
+                return false;
+                die();
+            } else {
+                return true;
+                die();
+            }
         }
     }
 }

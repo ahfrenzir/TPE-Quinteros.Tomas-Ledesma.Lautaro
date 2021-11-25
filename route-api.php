@@ -7,7 +7,7 @@ require_once 'Controller/ApiController.php';
 $router = new Router();
 
 // define la tabla de ruteo
-$router->addRoute('comment', 'GET', 'ApiController', 'getComments');
+$router->addRoute('comments/:ID', 'GET', 'ApiController', 'getComments');
 $router->addRoute('comment/:ID', 'GET', 'ApiController', 'getComment');
 $router->addRoute('comment', 'POST', 'ApiController', 'createComment');
 $router->addRoute('comment/:ID', 'DELETE', 'ApiController', 'deleteComment');

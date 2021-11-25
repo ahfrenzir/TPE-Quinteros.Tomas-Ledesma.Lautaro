@@ -52,9 +52,25 @@ class ChampionsModel
         $sentencia->execute();
     }
 
-    function updateRollfromdb($id)
+    function uploadImage($id, $image)
     {
-        $sentencia = $this->db->prepare("UPDATE roll SET finalizada = 1 WHERE id_rolls=?");
-        $sentencia->execute(array($id));
+        if ($image) {
+            $pathImg = $this->moveImage($image);
+            $query = $this->db->prepare("UPDATE champions SET img=? WHERE id_pj=?");
+            $query->execute(array($pathImg, $id));
+        }
+    }
+
+    private function moveImage($image){
+        $target = "img/champs/" . uniqid() . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
+        move_uploaded_file($image['tmp_name'], $target);
+        return $target;
+    }
+    function searchChampion($name)
+    {
+        $sentencia = $this->db->prepare("SELECT * FROM champion WHERE name = ?");
+        $sentencia->execute(array($name));
+        $id_champion = $sentencia->fetch(PDO::FETCH_OBJ);
+        return $id_champion;
     }
 }

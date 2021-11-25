@@ -12,10 +12,11 @@ class ChampionsView
         $this->smarty = new Smarty();
     }
 
-    function renderChampionList($champions, $rolls, $logged)
+    function renderChampionList($champions, $rolls, $logged, $admin)
     {
         $this->smarty->assign('titulo', "Lista de campeones");
         $this->smarty->assign('logged', $logged);
+        $this->smarty->assign('admin', $admin);
         $this->smarty->assign('champions', $champions);
         $this->smarty->assign('rolls', $rolls);
         $this->smarty->display('templates/championsList.tpl');
@@ -24,9 +25,10 @@ class ChampionsView
 
 
 
-    function renderChampion($champion, $logged)
+    function renderChampion($champion, $logged, $admin)
     {
         $this->smarty->assign('logged', $logged);
+        $this->smarty->assign('admin', $admin);
         $this->smarty->assign('champions', $champion);
         $this->smarty->display('templates/champion.tpl');
     }

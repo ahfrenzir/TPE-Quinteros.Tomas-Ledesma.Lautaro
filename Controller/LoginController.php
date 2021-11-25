@@ -54,12 +54,15 @@ class LoginController
                 session_start();
                 $_SESSION["user"] = $user;
                 $_SESSION["admin"] = $user->admin;
+                
 
                 $this->view->redirectHome();
                 
             } else {
-                $this->view->showlogin("Acceso Denegado");
+                $this->view->showlogin(null, "Acceso Denegado");
             }
+        }else {
+            $this->view->showlogin(null, "Ingrese su usuario");
         }
     }
 

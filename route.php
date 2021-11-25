@@ -63,6 +63,9 @@ switch ($params[0]) {
     case 'deleteChampion':
         $championsController->deleteChampion($params[1]);
         break;
+    case 'uploadImage':
+        $championsController->uploadImage($params[1]);
+        break;
     case 'roles':
         $rollsController->showRolls();
         break;

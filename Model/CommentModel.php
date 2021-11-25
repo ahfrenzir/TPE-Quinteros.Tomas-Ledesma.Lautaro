@@ -8,37 +8,32 @@ class CommentModel
         $this->db = new PDO('mysql:host=localhost;' . 'dbname=db_tpe;charset=utf8', 'root', '');
     }
 
-    function getComments()
+    function getCommentsfromDB($id_champ)
     {
-        $sentencia = $this->db->prepare("SELECT * FROM rolls");
-        $sentencia->execute();
-        $rolls = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return $rolls;
+        $sentencia = $this->db->prepare("SELECT * FROM comments WHERE id_champion = ?");
+        $sentencia->execute(array($id_champ));
+        $comments = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $comments;
     }
 
-    function getComment($id)
+    function getCommentfromDB($id_champion)
     {
-        $sentencia = $this->db->prepare("SELECT * FROM rolls WHERE id_roll = ?");
-        $sentencia->execute(array($id));
-        $roll = $sentencia->fetch(PDO::FETCH_OBJ);
-        return $roll;
+        $sentencia = $this->db->prepare("SELECT * FROM comments WHERE id_comment = ?");
+        $sentencia->execute(array($id_champion));
+        $comments = $sentencia->fetch(PDO::FETCH_OBJ);
+        return $comments;
     }
 
-    function insertComment($roll, $description)
+    function insertComment($body, $date, $punctuation, $id_champ)
     {
-        $sentencia = $this->db->prepare("INSERT INTO rolls (roll,description) VALUES (?, ?)");
-        $sentencia->execute(array($roll, $description));
+        $sentencia = $this->db->prepare("INSERT INTO comments (body,date,punctuation,id_champion) VALUES (?, ?, ?, ?)");
+        $sentencia->execute(array($body, $date, $punctuation, $id_champ));
     }
 
     function deleteComment($id)
     {
-        $sentencia = $this->db->prepare("DELETE FROM rolls WHERE id_roll=?");
+        $sentencia = $this->db->prepare("DELETE FROM comments WHERE id_comment=?");
         $sentencia->execute(array($id));
     }
-
-    function updateRollfromdb($id, $name, $description)
-    {
-        $sentencia = $this->db->prepare("UPDATE rolls SET roll='$name', description='$description' WHERE id_roll='$id'");
-        $sentencia->execute();
-    }
+    
 }

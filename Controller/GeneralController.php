@@ -40,6 +40,7 @@ class GeneralController
     }
 
     function changeAdmin($user){
+        $this->authHelper->restrictAdmin();
         $users = $this->userModel->getUser($user);
         var_dump($users);
         var_dump($users->admin);

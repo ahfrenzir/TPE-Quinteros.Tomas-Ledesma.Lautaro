@@ -1,9 +1,14 @@
-{if $logged}
+{if $admin}
+    {include file="templates/Admin/adminHeader.tpl" }
+
+{elseif $logged}
     {include file="templates/headerLogout.tpl"}
-    {else}
+    
+{else}
         {include file="templates/header.tpl"}
 {/if}
-<ul class="list-group">
+<h2 class="text-center lead alert alert-danger" >Atencion, para eliminar un roll, se deben eliminar los campeones que pertenecen a el anteriormente</h2>
+<ul class="list-group container-lg">
     {foreach from=$rolls item=$roll}
         <li class="list-group-item">
             <button type="button" class="btn btn-outline-primary"><a href="showChampsByRoll/{$roll->id_roll}">

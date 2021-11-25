@@ -22,19 +22,20 @@ class ChampionsController
 
     function showChampions()
     {
+        $admin = $this->authHelper->checkRoll();
         $logged = $this->authHelper->checkLoggedIn();
         $champions = $this->model->getChampionsFromDB();
         $rolls = $this->rollsModel->getRollsFromDB();
-        $this->view->renderChampionList($champions, $rolls, $logged);
-    
+        $this->view->renderChampionList($champions, $rolls, $logged, $admin);
     }
-    
+
 
     function showChampion($id)
     {
         $logged = $this->authHelper->checkLoggedIn();
+        $admin = $this->authHelper->checkRoll();
         $champion = $this->model->getChampion($id);
-        $this->view->renderChampion($champion, $logged);
+        $this->view->renderChampion($champion, $logged, $admin);
     }
 
     function createChampion()
@@ -75,8 +76,27 @@ class ChampionsController
         }
     }
 
+    function uploadImage($id_champion)
+    {
+        if ($_FILES['images']['type'] == "image/jpg" || $_FILES['images']['type'] == "image/jpeg" || $_FILES['images']['type'] == "image/png") {
+            
+            $this->model->uploadImage($id_champion, $_FILES['images']);
+            $this->showChampion($id_champion);
+        } else {
+            $this->view->showError();
+        }
+    }
+
+
+
     function restrictLogin()
     {
         $this->authHelper->restrictLoggedIn();
+    }
+    function searchChampion()
+    {
+        $name = $_GET['name'];
+        $logged = $this->authHelper->checkLoggedIn();
+        $id_champion = $this->model->getChampion($name);
     }
 }

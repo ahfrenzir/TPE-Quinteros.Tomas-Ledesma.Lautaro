@@ -12,19 +12,21 @@ class RollsView
         $this->smarty = new Smarty();
     }
 
-    function renderChampionsByRoll($champions, $rolls, $logged)
+    function renderChampionsByRoll($champions, $rolls, $logged, $admin)
     {
         $this->smarty->assign('titulo', "Lista de campeones: ");
         $this->smarty->assign('logged', $logged);
+        $this->smarty->assign('admin', $admin);
         $this->smarty->assign('roll', $rolls);
         $this->smarty->assign('champions', $champions);
         $this->smarty->display('templates/championsByRoll.tpl');
     }
 
-    function renderRolls($rolls, $logged)
+    function renderRolls($rolls, $logged, $admin)
     {
         $this->smarty->assign('titulo', "Lista de champions");
         $this->smarty->assign('logged', $logged);
+        $this->smarty->assign('admin', $admin);
         $this->smarty->assign('rolls', $rolls);
         $this->smarty->display('templates/rollsList.tpl');
     }
