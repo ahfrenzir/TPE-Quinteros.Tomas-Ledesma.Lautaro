@@ -41,6 +41,8 @@ class ChampionsController
     function createChampion()
     {
         $this->restrictLogin();
+        $logged = $this->authHelper->checkLoggedIn();
+        $admin = $this->authHelper->checkRoll();
         if (!empty($_POST['name']) && !empty($_POST['description']) && !empty($_POST['history'])) {
             $name = $_POST['name'];
             $description = $_POST['description'];
@@ -49,7 +51,7 @@ class ChampionsController
             $this->model->insertChampionOnDB($name, $description, $history, $roll);
             $this->view->redirectList();
         } else {
-            $this->view->showError();
+            $this->view->showError($admin,$logged);
         }
     }
 
@@ -63,6 +65,8 @@ class ChampionsController
     function updateChampion()
     {
         $this->restrictLogin();
+        $logged = $this->authHelper->checkLoggedIn();
+        $admin = $this->authHelper->checkRoll();
         if (!empty($_POST['name']) && !empty($_POST['description']) && !empty($_POST['history'])) {
             $name = $_POST['name'];
             $description = $_POST['description'];
@@ -72,7 +76,7 @@ class ChampionsController
             $this->model->updateChampionFromDB($name, $description, $history, $roll, $id);
             $this->view->redirectList();
         } else {
-            $this->view->showError();
+            $this->view->showError($admin,$logged);
         }
     }
 

@@ -39,10 +39,17 @@ class RollsController
     function createRoll()
     {
         $this->restrictLogin();
-        $roll = $_POST['roll'];
-        $description = $_POST['description'];
-        $this->model->insertRollOnDB($roll, $description);
-        $this->view->redirectList();
+        $logged = $this->authHelper->checkLoggedIn();
+        $admin = $this->authHelper->checkRoll();
+        if(!empty($_POST['roll']) && !empty($_POST['description'])){
+
+            $roll = $_POST['roll'];
+            $description = $_POST['description'];
+            $this->model->insertRollOnDB($roll, $description);
+            $this->view->redirectList();
+        }else{
+            $this->view->showError($logged, $admin);
+        }
     }
 
     function deleteRoll($id)
@@ -55,11 +62,18 @@ class RollsController
     function updateRoll()
     {
         $this->restrictLogin();
-        $id = $_POST['id_roll'];
-        $name = $_POST['name'];
-        $description = $_POST['description'];
-        $this->model->updateRollFromDB($id, $name, $description);
-        $this->view->redirectList();
+        $logged = $this->authHelper->checkLoggedIn();
+        $admin = $this->authHelper->checkRoll();
+        if(!empty($_POST['name']) && !empty($_POST['description'])){
+
+            $id = $_POST['id_roll'];
+            $name = $_POST['name'];
+            $description = $_POST['description'];
+            $this->model->updateRollFromDB($id, $name, $description);
+            $this->view->redirectList();
+        }else{
+            $this->view->showError($logged, $admin);
+        }
     }
 
     function restrictLogin()

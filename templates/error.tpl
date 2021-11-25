@@ -1,4 +1,12 @@
-{include file="templates/header.tpl"}
+{if $admin}
+    {include file="templates/Admin/adminHeader.tpl" }
+
+{elseif $logged}
+    {include file="templates/headerLogout.tpl"}
+
+{else}
+    {include file="templates/header.tpl"}
+{/if}
 
 <h1 class="text-center"> ¡ATENCION! </h1>
 <p class="text-center lead"> Has dejado el formulario sin completar.

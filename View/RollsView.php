@@ -31,6 +31,13 @@ class RollsView
         $this->smarty->display('templates/rollsList.tpl');
     }
 
+    function showError($admin,$logged)
+    { 
+        $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('logged', $logged);
+        $this->smarty->display('templates/error.tpl');
+    }
+
     function redirectList()
     {
         header("Location: " . BASE_URL . "roles");
