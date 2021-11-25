@@ -64,11 +64,11 @@ class ChampionsController
     {
         $this->restrictLogin();
         if (!empty($_POST['name']) && !empty($_POST['description']) && !empty($_POST['history'])) {
-            $id = $_POST['id_pj'];
             $name = $_POST['name'];
             $description = $_POST['description'];
             $history = $_POST['history'];
             $roll = $_POST['id_roll'];
+            $id = $_POST['id_pj'];
             $this->model->updateChampionFromDB($name, $description, $history, $roll, $id);
             $this->view->redirectList();
         } else {
@@ -78,6 +78,7 @@ class ChampionsController
 
     function uploadImage($id_champion)
     {
+        $this->authHelper->restrictAdmin();
         if ($_FILES['images']['type'] == "image/jpg" || $_FILES['images']['type'] == "image/jpeg" || $_FILES['images']['type'] == "image/png") {
             
             $this->model->uploadImage($id_champion, $_FILES['images']);
@@ -92,12 +93,5 @@ class ChampionsController
     function restrictLogin()
     {
         $this->authHelper->restrictLoggedIn();
-    }
-    function searchChampion()
-    {
-        $name = $_GET['name'];
-        $logged = $this->authHelper->checkLoggedIn();
-        $id_champion = $this->model->getChampion($name);
-        $id_champion = $this->view->searchChampion($id_champion);
     }
 }

@@ -21,8 +21,6 @@ class GeneralController
     function showHome(){
         $logged  = $this->authHelper->checkLoggedIn();
         $admin = $this->authHelper->checkRoll();
-        var_dump($admin);
-        var_dump($logged);
         if($admin){
             $this->view->renderAdminHome();
         }else{
@@ -42,8 +40,6 @@ class GeneralController
     function changeAdmin($user){
         $this->authHelper->restrictAdmin();
         $users = $this->userModel->getUser($user);
-        var_dump($users);
-        var_dump($users->admin);
         if($users->admin == 1){
             $permission = 0;
         }else{

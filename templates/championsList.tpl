@@ -8,6 +8,8 @@
     {include file="templates/header.tpl"}
 {/if}
 
+
+
 <ul class="list-group container-lg">
     {foreach from=$champions item=$champion}
         <li class="list-group-item">
@@ -77,6 +79,5 @@
 </div>
 
 <img src="./img/1366_2000.jpeg" class="rounded mx-auto d-block">
-
 
 {include file="templates/footer.tpl"}

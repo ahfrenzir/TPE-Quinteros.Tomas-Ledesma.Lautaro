@@ -27,7 +27,6 @@ class LoginController
     {
         if (!empty($_POST['user']) && !empty($_POST['password'])) {
             $username = $this->model->getUser($_POST['user']);
-            var_dump($username);
             if ($_POST['user'] == $username->user) {
                 $this->view->showRegister("Este usuario ya existe");
             } else {
@@ -47,7 +46,7 @@ class LoginController
             $passwordForm = $_POST['password'];
 
             $user = $this->model->getUser($userForm);
-            var_dump($user);
+           
 
             if ($user && password_verify($passwordForm, ($user->password))) {
 
@@ -59,10 +58,10 @@ class LoginController
                 $this->view->redirectHome();
                 
             } else {
-                $this->view->showlogin(null, "Acceso Denegado");
+                $this->view->showLogin(null, "Acceso Denegado");
             }
         }else {
-            $this->view->showlogin(null, "Ingrese su usuario");
+            $this->view->showLogin(null, "Ingrese su usuario");
         }
     }
 

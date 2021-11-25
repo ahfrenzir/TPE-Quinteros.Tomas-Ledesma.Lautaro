@@ -26,14 +26,14 @@
     </form> 
 {/if}
 
-
+        
         <form id="form-comment" data-admin="{$admin}" data-idItem="{$champions->id_pj}">
         {if $logged}
         <div class="input-group">
             <span class="input-group-text">¡Dejanos tu comentario!</span>
             <textarea class="form-control" aria-label="With textarea" placeholder="Escribe aquí..."
                 id="comment-body" required></textarea>
-            <select class="form-select " aria-label="Default select example" id="#punctuation">
+            <select class="form-select " aria-label="Default select example" id="punctuation">
                 <option value="1" selected> 1 </option>
                 <option value="2"> 2 </option>
                 <option value="3"> 3 </option>

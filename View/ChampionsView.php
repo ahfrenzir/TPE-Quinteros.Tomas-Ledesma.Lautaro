@@ -42,8 +42,4 @@ class ChampionsView
     {
         $this->smarty->display('templates/error.tpl');
     }
-    function searchChampion($id_champion)
-    {
-        $this->smarty->assign('champion', $id_champion);
-    }
 }

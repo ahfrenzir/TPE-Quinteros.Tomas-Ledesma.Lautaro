@@ -41,8 +41,7 @@ class ApiController{
         $comment = $this->model->getCommentfromDB($idComment);
             if($comment){
                 $comment = $this->model->deleteComment($idComment);
-                return $this->view->response("El comentario con el id=$idComment fue borrado", 200);
-                // 
+                return $this->view->response("El comentario con el id=$idComment fue borrado", 200); 
             }else{
             $this->view->response("El comentario con el id=$idComment no existe", 404);
         }
@@ -57,7 +56,6 @@ class ApiController{
             $punctuation = $body->punctuation;
             $id_champion = $body->id_champion;
             $date = $body->date;
-            var_dump($date);
             
             $this->model->insertComment($comments,$date, $punctuation, $id_champion);
             $this->view->response("Comentario creado con exito", 200);

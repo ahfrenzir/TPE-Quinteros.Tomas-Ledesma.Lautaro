@@ -35,8 +35,8 @@ class ChampionsModel
 
     function insertChampionOnDB($name, $description, $history, $roll)
     {
-        $sentencia = $this->db->prepare("INSERT INTO champions (name,description,history,id_roll) VALUES (?, ?, ?, ?)");
-        $sentencia->execute(array($name, $description, $history, $roll));
+        $sentencia = $this->db->prepare("INSERT INTO champions (name,description,history,id_roll, img) VALUES (?, ?, ?, ?, ?)");
+        $sentencia->execute(array($name, $description, $history, $roll, null));
     }
 
     function deleteChampionfromdb($id)
@@ -48,7 +48,7 @@ class ChampionsModel
 
     function updateChampionFromDB($name, $description, $history, $roll, $id)
     {
-        $sentencia = $this->db->prepare("UPDATE champions SET name=?, description=?, history=? ,id_roll=?) WHERE id_pj=?");
+        $sentencia = $this->db->prepare("UPDATE champions SET name=?,description=?,history=?,id_roll=? WHERE id_pj=?");
         $sentencia->execute(array($name,$description,$history,$roll,$id));
     }
 
@@ -65,12 +65,5 @@ class ChampionsModel
         $target = "img/champs/" . uniqid() . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
         move_uploaded_file($image['tmp_name'], $target);
         return $target;
-    }
-    function searchChampion($name)
-    {
-        $sentencia = $this->db->prepare("SELECT * FROM champion WHERE name = ?");
-        $sentencia->execute(array($name));
-        $id_champion = $sentencia->fetch(PDO::FETCH_OBJ);
-        return $id_champion;
     }
 }

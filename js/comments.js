@@ -8,6 +8,7 @@ if (document.querySelector("#submit-btn")) {
     .addEventListener("click", createComment);
 }
 
+
 let app = new Vue({
   el: "#app",
   data: {
@@ -20,6 +21,7 @@ let app = new Vue({
     },
   },
 });
+
 
 async function getComments() {
   try {
@@ -82,6 +84,7 @@ async function createComment() {
 
 async function deleteCommentById(id_btn) {
   try {
+    
     let response = await fetch(API_URL + "/" + id_btn, {
       method: "DELETE",
       headers: {
@@ -92,4 +95,5 @@ async function deleteCommentById(id_btn) {
   } catch (response) {
     console.error(response);
   }
+
 }
