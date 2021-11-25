@@ -98,6 +98,6 @@ class ChampionsController
         $name = $_GET['name'];
         $logged = $this->authHelper->checkLoggedIn();
         $id_champion = $this->model->getChampion($name);
-        $id_champion = $this->view->searcChampion($id_champion);
+        $id_champion = $this->view->searchChampion($id_champion);
     }
 }
